@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fit4Life NZ | Strength Training Gym, Mangōnui</title>
+<meta name="description" content="Fit4Life NZ is a strength training gym at 21 Midgley Road, Mangōnui. Coached strength groups, hybrid training and personal training for the Doubtless Bay community.">
+<meta property="og:title" content="Fit4Life NZ | Strength Training Gym, Mangōnui">
+<meta property="og:description" content="Coached strength groups, hybrid training and personal training in Mangōnui, Doubtless Bay.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/hero-1.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e2018'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%231a9d5c' text-anchor='middle'%3EF4%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0e2018;
+  --ink-soft:#3c5248;
+  --bg:#f4f7f4;
+  --bone:#eaf0ea;
+  --card:#ffffff;
+  --accent:#1a9d5c;
+  --accent-dark:#116e41;--accent-deep:#0c5230;
+  --line:rgba(14,32,24,.12);
+  --r:16px;
+  --display:'Unbounded',sans-serif;
+  --body:'Onest',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+img{image-orientation:from-image;max-width:100%}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);line-height:1.7;font-size:16px;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);line-height:1.15}
+a{color:inherit}
+::selection{background:var(--accent-dark);color:#fff}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* intro overlay */
+#intro{position:fixed;inset:0;background:var(--ink);z-index:200;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease,visibility .6s ease}
+#intro span{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,5vw,2.6rem);color:#fff;letter-spacing:.02em;opacity:0;transform:translateY(14px);animation:introIn .7s .15s cubic-bezier(.16,1,.3,1) forwards}
+#intro span b{color:var(--accent);font-weight:700}
+#intro.gone{opacity:0;visibility:hidden}
+@keyframes introIn{to{opacity:1;transform:none}}
+
+/* nav */
+header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s ease,box-shadow .3s ease}
+header.solid{background:rgba(244,247,244,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.nav{max-width:1160px;margin:0 auto;padding:0 20px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:.01em;text-decoration:none;color:#fff;transition:color .3s}
+.logo b{color:var(--accent)}
+header.solid .logo{color:var(--ink)}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;color:rgba(255,255,255,.9)}
+header.solid .nav-links a{color:var(--ink-soft)}
+.nav-links a:hover{color:var(--accent)}
+.nav-call{display:inline-flex;align-items:center;gap:8px;height:44px;padding:0 18px;border-radius:999px;background:var(--accent-dark);color:#fff !important;font-weight:600;text-decoration:none;line-height:1;transition:background .25s}
+.nav-call:hover{background:var(--accent-deep);color:#fff !important}
+.burger{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;align-items:center;justify-content:center;color:#fff}
+header.solid .burger{color:var(--ink)}
+.mobile-menu{display:none;background:rgba(14,32,24,.98);backdrop-filter:blur(10px);padding:8px 0 12px}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:flex;align-items:center;min-height:52px;padding:0 24px;color:#fff;text-decoration:none;font-weight:500;border-top:1px solid rgba(255,255,255,.08)}
+.mobile-menu a:hover{color:var(--accent)}
+
+/* hero */
+.hero{position:relative;min-height:100dvh;display:flex;align-items:flex-end;background:#0e2018;overflow:hidden}
+.hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;filter:saturate(.85) contrast(1.05)}
+.hero-slide.on{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,19,.55) 0%,rgba(10,26,19,.45) 45%,rgba(10,26,19,.78) 100%)}
+.hero-inner{position:relative;z-index:2;max-width:1160px;margin:0 auto;width:100%;padding:120px 20px 72px}
+.hero-eyebrow{display:inline-block;color:#bfe8d2;font-weight:600;font-size:.9rem;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px}
+.hero h1{color:#fff;font-size:clamp(2rem,5.5vw,3.5rem);font-weight:700;max-width:16ch}
+.hero p{color:rgba(255,255,255,.88);max-width:44ch;margin:18px 0 28px;font-size:1.1rem}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:34px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 26px;border-radius:999px;font-weight:600;font-size:1rem;text-decoration:none;line-height:1;transition:transform .2s,background .25s;cursor:pointer}
+.btn:active{transform:scale(.98)}
+.btn-fill{background:var(--accent-dark);color:#fff}
+.btn-fill:hover{background:var(--accent-deep)}
+.btn-ghost{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px)}
+.btn-ghost:hover{background:rgba(255,255,255,.22)}
+.hero-quote{max-width:420px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(10px);border-radius:var(--r);padding:16px 20px;color:#fff}
+.hero-quote .stars{color:#ffce4a;letter-spacing:2px;font-size:.9rem}
+.hero-quote blockquote{font-size:.95rem;margin:6px 0 4px;min-height:3.2em;transition:opacity .5s}
+.hero-quote cite{font-style:normal;font-size:.85rem;color:rgba(255,255,255,.75)}
+.hero-quote .eg{display:block;font-size:.75rem;color:rgba(255,255,255,.6);margin-top:6px}
+
+/* sections shared */
+section{padding:88px 0}
+.wrap{max-width:1160px;margin:0 auto;padding:0 20px}
+.sec-head{max-width:640px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(1.6rem,3.4vw,2.3rem);font-weight:600}
+.sec-head p{color:var(--ink-soft);margin-top:12px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* services */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.svc{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
+.svc:hover{transform:translateY(-6px);box-shadow:0 18px 40px -18px rgba(14,32,24,.28)}
+.svc img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(.85) contrast(1.05)}
+.svc-body{padding:22px 22px 26px}
+.svc-tag{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-dark)}
+.svc-tag svg{width:15px;height:15px}
+.svc h3{font-size:1.25rem;margin:8px 0 6px}
+.svc p{font-size:.95rem;color:var(--ink-soft)}
+
+/* about */
+.about{background:var(--bone)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.about-photo{position:relative}
+.about-photo img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:var(--r);filter:saturate(.85) contrast(1.05);display:block}
+.about-photo::after{content:"MANGŌNUI";position:absolute;bottom:14px;left:14px;background:var(--accent-dark);color:#fff;font-family:var(--display);font-weight:600;font-size:.75rem;letter-spacing:.12em;padding:8px 14px;border-radius:999px}
+.about-copy h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:16px}
+.about-copy p{color:var(--ink-soft);margin-bottom:14px}
+.checks{list-style:none;margin-top:22px}
+.checks li{display:flex;gap:12px;align-items:flex-start;padding:9px 0;font-weight:500}
+.checks svg{width:22px;height:22px;color:var(--accent);flex-shrink:0;margin-top:3px}
+
+/* crew */
+.crew-note{display:inline-block;font-size:.8rem;font-weight:600;color:var(--accent-dark);background:rgba(26,157,92,.1);border:1px solid rgba(26,157,92,.25);padding:4px 12px;border-radius:999px;margin-top:10px}
+.crew-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.crew-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:30px 24px;text-align:center;transition:transform .3s}
+.crew-card:hover{transform:translateY(-5px)}
+.avatar{width:84px;height:84px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:700;font-size:1.5rem;margin:0 auto 16px;border:3px solid var(--accent)}
+.crew-card h3{font-size:1.1rem}
+.crew-card .role{color:var(--accent-dark);font-weight:600;font-size:.85rem;margin-top:2px}
+.crew-card p{font-size:.9rem;color:var(--ink-soft);margin-top:10px}
+
+/* reviews */
+.reviews{background:var(--ink);color:#fff}
+.reviews .sec-head h2{color:#fff}
+.reviews .sec-head p{color:rgba(255,255,255,.7)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:36px}
+.rev-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:26px}
+.rev-card .stars{color:#ffce4a;letter-spacing:3px;font-size:.95rem}
+.rev-card blockquote{margin:12px 0 14px;font-size:.98rem;color:rgba(255,255,255,.92)}
+.rev-card cite{font-style:normal;font-weight:600;font-size:.9rem}
+.rev-card .loc{display:block;font-weight:400;font-size:.8rem;color:rgba(255,255,255,.6)}
+.rev-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.rev-eg{font-size:.85rem;color:rgba(255,255,255,.55);margin-top:18px;max-width:60ch}
+
+/* review banner */
+.banner{background:linear-gradient(120deg,var(--accent-deep),var(--accent-dark));padding:56px 0}
+.banner-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:22px}
+.banner h2{color:#fff;font-size:clamp(1.3rem,2.6vw,1.7rem)}
+.banner p{color:rgba(255,255,255,.85);margin-top:6px}
+.btn-white{background:#fff;color:var(--ink)}
+.btn-white:hover{background:var(--bone)}
+
+/* contact */
+.contact-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;max-width:1120px;margin:0 auto}
+.contact-map{min-height:100%;position:relative}
+.contact-map iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.contact-info{padding:40px 36px}
+.contact-info h2{font-size:clamp(1.4rem,2.6vw,1.9rem);margin-bottom:8px}
+.contact-info>p{color:var(--ink-soft);margin-bottom:24px}
+.contact-btns{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.contact-btns .btn{width:100%}
+.btn-outline{border:2px solid var(--ink);color:var(--ink);background:transparent}
+.btn-outline:hover{background:var(--ink);color:#fff}
+.info-rows{list-style:none}
+.info-rows li{display:flex;gap:14px;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line);font-size:.95rem}
+.info-rows li:first-child{border-top:0}
+.info-rows svg{width:20px;height:20px;color:var(--accent);flex-shrink:0;margin-top:4px}
+.info-rows a{color:inherit;text-decoration:none}
+.info-rows a:hover{color:var(--accent-dark)}
+.socials{display:flex;gap:12px;margin-top:22px}
+.socials a{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--ink);transition:background .25s,color .25s}
+.socials a:hover{background:var(--accent-dark);color:#fff;border-color:var(--accent-dark)}
+.socials svg{width:20px;height:20px}
+
+/* footer */
+footer{background:var(--ink);color:rgba(255,255,255,.75);padding:56px 0 32px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.foot-logo{font-family:var(--display);font-weight:700;font-size:1.3rem;color:#fff;text-decoration:none}
+.foot-logo b{color:var(--accent)}
+footer p{font-size:.9rem;max-width:34ch;margin-top:12px}
+footer h3{color:#fff;font-family:var(--display);font-size:.95rem;margin-bottom:14px;font-weight:600}
+footer ul{list-style:none}
+footer li{margin-bottom:9px}
+footer a{color:rgba(255,255,255,.75);text-decoration:none;font-size:.9rem}
+footer a:hover{color:var(--accent)}
+.foot-socials{display:flex;gap:12px;margin-top:16px}
+.foot-socials a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff}
+.foot-socials a:hover{background:var(--accent-dark);border-color:var(--accent-dark);color:#fff}
+.foot-socials svg{width:18px;height:18px}
+.foot-base{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-size:.82rem;color:rgba(255,255,255,.5)}
+
+@media(max-width:960px){
+  .svc-grid,.crew-grid,.rev-grid{grid-template-columns:1fr 1fr}
+  .about-grid{gap:36px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .burger{display:inline-flex}
+  section{padding:64px 0}
+  .about-grid{grid-template-columns:1fr}
+  .contact-card{grid-template-columns:1fr}
+  .contact-map{min-height:320px;order:2}
+  .contact-info{order:1}
+  .hero-inner{padding:110px 20px 56px}
+}
+@media(max-width:560px){
+  .svc-grid,.crew-grid,.rev-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .hero-ctas .btn{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  .reveal{opacity:1;transform:none}
+  #intro{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="intro" aria-hidden="true"><span>Fit<b>4</b>Life NZ</span></div>
+
+<header id="header">
+  <nav class="nav" aria-label="Main">
+    <a class="logo" href="#top">Fit<b>4</b>Life NZ</a>
+    <ul class="nav-links">
+      <li><a href="#services">Training</a></li>
+      <li><a href="#about">The gym</a></li>
+      <li><a href="#crew">Coaches</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a class="nav-call" href="tel:+6421781225">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        021 781 225</a></li>
+    </ul>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">Training</a>
+    <a href="#about">The gym</a>
+    <a href="#crew">Coaches</a>
+    <a href="#reviews">Reviews</a>
+    <a href="tel:+6421781225">Call 021 781 225</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" style="padding:0" aria-label="Fit4Life NZ">
+  <img class="hero-slide on" src="img/hero-1.jpg" alt="Dumbbell rack on the gym floor at a strength training gym" fetchpriority="high" width="1800" height="1200">
+  <img class="hero-slide" src="img/hero-2.jpg" alt="Lifter setting up a barbell deadlift" loading="lazy" width="1800" height="1200">
+  <img class="hero-slide" src="img/hero-3.jpg" alt="Woman pressing a barbell overhead in a squat rack" loading="lazy" width="1800" height="1200">
+  <div class="hero-inner">
+    <span class="hero-eyebrow">Strength gym, Mangōnui</span>
+    <h1>Get strong in Doubtless Bay.</h1>
+    <p>Coached strength and hybrid training at 21 Midgley Road. Small groups, proper lifting, and a gym where everyone knows your name.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-fill" href="tel:+6421781225">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call 021 781 225</a>
+      <a class="btn btn-ghost" href="#contact">Book a session</a>
+    </div>
+    <div class="hero-quote" aria-live="polite">
+      <span class="stars" aria-label="Five stars">★★★★★</span>
+      <blockquote id="heroQuote">The coaching is spot on. I came in never having touched a barbell and now I deadlift more than my mates.</blockquote>
+      <cite id="heroCite">Marama H.</cite>
+      <span class="eg">Example reviews, shown while the Google listing is connected</span>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Training that fits your life</h2>
+      <p>Strength first, coached properly. Pick the format that suits you and build from there.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc reveal">
+        <img src="img/svc-strength.jpg" alt="Man lifting a barbell during a strength session" loading="lazy" width="1800" height="1200">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5 17.5 17.5M4 10V4h6M20 14v6h-6"/></svg>Core service</span>
+          <h3>Strength Training</h3>
+          <p>Barbell and dumbbell work built around the basics: squat, press, pull. Simple programming that gets you measurably stronger.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/svc-group.jpg" alt="Two training partners working out together on mats" loading="lazy" width="1800" height="1200">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Train together</span>
+          <h3>Strength Groups</h3>
+          <p>Small coached groups lifting together. All the accountability of a training partner, with a coach watching your form.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/svc-hybrid.jpg" alt="Athlete gripping a loaded barbell for a deadlift" loading="lazy" width="1800" height="1200">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Strength + engine</span>
+          <h3>Hybrid Training Groups</h3>
+          <p>Lifting plus conditioning in one session. Build strength and fitness at the same time without living in the gym.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/svc-pt.jpg" alt="Woman training on a lat pulldown machine" loading="lazy" width="1800" height="1200">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg>One on one</span>
+          <h3>Personal Training</h3>
+          <p>A qualified trainer, a plan written for you, and sessions at your pace. The fastest way to get confident under a bar.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/svc-open.jpg" alt="Open gym floor with benches, bikes and free weights" loading="lazy" width="1800" height="1200">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>Your schedule</span>
+          <h3>Gym Training</h3>
+          <p>Train on the gear at your own pace once you know your way around. Racks, bars and plates without the queue.</p>
+        </div>
+      </article>
+      <article class="svc reveal">
+        <img src="img/svc-supp.jpg" alt="Scoop of protein powder" loading="lazy" width="1800" height="1200">
+        <div class="svc-body">
+          <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8M9 2v4l-4 8a5 5 0 0 0 4.5 7h5A5 5 0 0 0 19 14l-4-8V2"/></svg>Fuel</span>
+          <h3>Protein &amp; Supplements</h3>
+          <p>Grab protein and training basics at the gym. No guesswork, just what actually helps you recover and rebuild.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-photo reveal">
+        <img src="img/about.jpg" alt="Squat rack and dumbbells in afternoon light at the gym" loading="lazy" width="1800" height="1200">
+      </div>
+      <div class="about-copy reveal">
+        <h2>A local gym, not a franchise</h2>
+        <p>Fit4Life NZ is Mangōnui's strength gym. You get coached lifting in a place where the person next to you is a neighbour, not a stranger with headphones in.</p>
+        <p>Beginners are the point here, not a problem. Your first session covers the basics with a coach, and you progress at a pace that suits your body and your week.</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Locally owned and run in Mangōnui</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Qualified trainers coaching every group</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>All levels welcome, from first session to first competition</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="crew">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Who you'll train with</h2>
+      <span class="crew-note">Example team, updated with real coaches before launch</span>
+    </div>
+    <div class="crew-grid">
+      <div class="crew-card reveal">
+        <div class="avatar">JU</div>
+        <h3>Jude</h3>
+        <div class="role">Owner, Head Coach</div>
+        <p>Runs the gym and the programming. First point of contact for new members.</p>
+      </div>
+      <div class="crew-card reveal">
+        <div class="avatar">SC</div>
+        <h3>Strength Coach</h3>
+        <div class="role">Group Sessions</div>
+        <p>Coaches the strength groups and keeps every lift honest and safe.</p>
+      </div>
+      <div class="crew-card reveal">
+        <div class="avatar">HC</div>
+        <h3>Hybrid Coach</h3>
+        <div class="role">Hybrid Training</div>
+        <p>Builds the conditioning side of hybrid sessions so the work stays hard but doable.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>What locals say</h2>
+      <p>Fit4Life NZ has a 100 percent recommend rating on Facebook.</p>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card reveal">
+        <span class="stars" aria-label="Five stars">★★★★★</span>
+        <blockquote>The coaching is spot on. I came in never having touched a barbell and now I deadlift more than my mates.</blockquote>
+        <cite>Marama H.<span class="loc">Coopers Beach</span></cite>
+      </div>
+      <div class="rev-card reveal">
+        <span class="stars" aria-label="Five stars">★★★★★</span>
+        <blockquote>Hybrid group on a Tuesday is the highlight of my week. Hard work, good people, zero attitude.</blockquote>
+        <cite>Steve K.<span class="loc">Taipā</span></cite>
+      </div>
+      <div class="rev-card reveal">
+        <span class="stars" aria-label="Five stars">★★★★★</span>
+        <blockquote>Jude sorted me a plan after my knee op and eased me back into squatting. Patient, knows their stuff.</blockquote>
+        <cite>Ana T.<span class="loc">Mangōnui</span></cite>
+      </div>
+    </div>
+    <div class="rev-actions reveal">
+      <a class="btn btn-fill" href="https://www.google.com/maps/search/?api=1&query=Fit4Life+NZ+21+Midgley+Road+Mangonui" target="_blank" rel="noopener">See our Google reviews</a>
+    </div>
+    <p class="rev-eg reveal">These are example reviews written for this demo. They will be swapped for the gym's real Google reviews before launch.</p>
+  </div>
+</section>
+
+<section class="banner" id="review-banner">
+  <div class="wrap banner-inner">
+    <div>
+      <h2>Trained with us? Leave a review</h2>
+      <p>A quick Google review helps more locals find the gym.</p>
+    </div>
+    <a class="btn btn-white" href="https://www.google.com/maps/search/?api=1&query=Fit4Life+NZ+21+Midgley+Road+Mangonui" target="_blank" rel="noopener">Leave a Google review</a>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <div class="contact-map">
+        <iframe title="Map showing Fit4Life NZ at 21 Midgley Road, Mangōnui" src="https://www.google.com/maps?q=Fit4Life+NZ+21+Midgley+Road+Mangonui+New+Zealand&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="contact-info">
+        <h2>Come lift with us</h2>
+        <p>Call or email Jude to book your first session or ask about class times.</p>
+        <div class="contact-btns">
+          <a class="btn btn-fill" href="tel:+6421781225">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            Call Fit4Life NZ</a>
+          <a class="btn btn-outline" data-gmail data-user="fit4lifenz" data-domain="outlook.com" data-su="Training%20enquiry" href="#contact">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            Email Fit4Life NZ</a>
+        </div>
+        <ul class="info-rows">
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>21 Midgley Road, Mangōnui 0494, Northland</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <a href="tel:+6421781225">021 781 225</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+            <a data-gmail data-user="fit4lifenz" data-domain="outlook.com" href="#contact">Email the gym</a>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Call for current session and class times</span>
+          </li>
+        </ul>
+        <div class="socials">
+          <a href="https://www.facebook.com/Fit4LifeNewZealand/" target="_blank" rel="noopener" aria-label="Fit4Life NZ on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/explore/search/keyword/?q=Fit4Life%20NZ" target="_blank" rel="noopener" aria-label="Find Fit4Life NZ on Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="foot-logo" href="#top">Fit<b>4</b>Life NZ</a>
+        <p>Strength training gym at 21 Midgley Road, Mangōnui. Coached groups, hybrid training and personal training for Doubtless Bay.</p>
+        <div class="foot-socials">
+          <a href="https://www.facebook.com/Fit4LifeNewZealand/" target="_blank" rel="noopener" aria-label="Fit4Life NZ on Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/explore/search/keyword/?q=Fit4Life%20NZ" target="_blank" rel="noopener" aria-label="Find Fit4Life NZ on Instagram">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3>Training</h3>
+        <ul>
+          <li><a href="#services">Strength Training</a></li>
+          <li><a href="#services">Strength Groups</a></li>
+          <li><a href="#services">Hybrid Training</a></li>
+          <li><a href="#services">Personal Training</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Info</h3>
+        <ul>
+          <li><a href="#about">The gym</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="terms.html">Terms &amp; Conditions</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Fit4Life NZ. All rights reserved.</span>
+      <span>21 Midgley Road, Mangōnui, Northland</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* intro */
+  var intro = document.getElementById('intro');
+  if(intro){
+    window.setTimeout(function(){ intro.classList.add('gone'); }, reduced ? 0 : 1400);
+  }
+
+  /* sticky nav */
+  var header = document.getElementById('header');
+  var hero = document.querySelector('.hero');
+  if('IntersectionObserver' in window && hero){
+    new IntersectionObserver(function(entries){
+      header.classList.toggle('solid', !entries[0].isIntersecting);
+    }, {rootMargin:'-70px 0px 0px 0px'}).observe(hero);
+  } else { header.classList.add('solid'); }
+
+  /* mobile menu */
+  var burger = document.getElementById('burger');
+  var menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+    if(open){ header.classList.add('solid'); }
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ menu.classList.remove('open'); burger.setAttribute('aria-expanded','false'); });
+  });
+
+  /* hero slides */
+  var slides = document.querySelectorAll('.hero-slide');
+  if(!reduced && slides.length > 1){
+    var s = 0;
+    window.setInterval(function(){
+      slides[s].classList.remove('on');
+      s = (s + 1) % slides.length;
+      slides[s].classList.add('on');
+    }, 6000);
+  }
+
+  /* hero rotating quotes (same wording as review cards) */
+  var quotes = [
+    {t:"The coaching is spot on. I came in never having touched a barbell and now I deadlift more than my mates.", n:"Marama H."},
+    {t:"Hybrid group on a Tuesday is the highlight of my week. Hard work, good people, zero attitude.", n:"Steve K."},
+    {t:"Jude sorted me a plan after my knee op and eased me back into squatting. Patient, knows their stuff.", n:"Ana T."}
+  ];
+  var qEl = document.getElementById('heroQuote');
+  var cEl = document.getElementById('heroCite');
+  if(!reduced && qEl){
+    var q = 0;
+    window.setInterval(function(){
+      qEl.style.opacity = '0';
+      window.setTimeout(function(){
+        q = (q + 1) % quotes.length;
+        qEl.textContent = quotes[q].t;
+        cEl.textContent = quotes[q].n;
+        qEl.style.opacity = '1';
+      }, 500);
+    }, 6500);
+  }
+
+  /* reveals */
+  if('IntersectionObserver' in window && !reduced){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* gmail compose links */
+  document.querySelectorAll('a[data-gmail]').forEach(function(a){
+    var to = a.getAttribute('data-user') + '@' + a.getAttribute('data-domain');
+    a.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + encodeURIComponent(to) + '&su=' + (a.getAttribute('data-su') || '') + '&body=' + (a.getAttribute('data-body') || '');
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+})();
+</script>
+</body>
+</html>
