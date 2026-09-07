@@ -8,21 +8,23 @@
 <meta property="og:title" content="Fit4Life NZ | Strength Training Gym, Mangōnui">
 <meta property="og:description" content="Coached strength groups, hybrid training and personal training in Mangōnui, Doubtless Bay.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="img/hero-1.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e2018'/%3E%3Ctext x='32' y='44' font-family='Arial,sans-serif' font-size='30' font-weight='700' fill='%231a9d5c' text-anchor='middle'%3EF4%3C/text%3E%3C/svg%3E">
+<meta property="og:image" content="img/gym-floor-wide.jpg">
+<link rel="icon" href="img/logo.png">
+<link rel="apple-touch-icon" href="img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;600;700&family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0e2018;
-  --ink-soft:#3c5248;
-  --bg:#f4f7f4;
-  --bone:#eaf0ea;
+  /* taken from the FIT4LIFENZ badge: crimson, near-black, white */
+  --ink:#141414;
+  --ink-soft:#4a4a4a;
+  --bg:#f6f6f6;
+  --bone:#ebebeb;
   --card:#ffffff;
-  --accent:#1a9d5c;
-  --accent-dark:#116e41;--accent-deep:#0c5230;
-  --line:rgba(14,32,24,.12);
+  --accent:#d40016;
+  --accent-dark:#a90011;--accent-deep:#7d000c;
+  --line:rgba(20,20,20,.12);
   --r:16px;
   --display:'Unbounded',sans-serif;
   --body:'Onest',sans-serif;
@@ -47,9 +49,12 @@ a{color:inherit}
 header{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .3s ease,box-shadow .3s ease}
 header.solid{background:rgba(244,247,244,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
 .nav{max-width:1160px;margin:0 auto;padding:0 20px;height:68px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.logo{font-family:var(--display);font-weight:700;font-size:1.25rem;letter-spacing:.01em;text-decoration:none;color:#fff;transition:color .3s}
-.logo b{color:var(--accent)}
-header.solid .logo{color:var(--ink)}
+.logo{display:flex;align-items:center;text-decoration:none;line-height:0}
+/* the badge is drawn for a light ground, so it gets a knocked-out white
+   backing while the header is still transparent over the hero */
+.logo img{height:46px;width:auto;background:#fff;border-radius:50%;padding:3px;
+  box-shadow:0 2px 10px rgba(0,0,0,.25);transition:height .3s}
+header.solid .logo img{height:42px;box-shadow:none}
 .nav-links{display:flex;align-items:center;gap:26px;list-style:none}
 .nav-links a{text-decoration:none;font-weight:500;font-size:.95rem;color:rgba(255,255,255,.9)}
 header.solid .nav-links a{color:var(--ink-soft)}
@@ -58,13 +63,13 @@ header.solid .nav-links a{color:var(--ink-soft)}
 .nav-call:hover{background:var(--accent-deep);color:#fff !important}
 .burger{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;align-items:center;justify-content:center;color:#fff}
 header.solid .burger{color:var(--ink)}
-.mobile-menu{display:none;background:rgba(14,32,24,.98);backdrop-filter:blur(10px);padding:8px 0 12px}
+.mobile-menu{display:none;background:rgba(20,20,20,.98);backdrop-filter:blur(10px);padding:8px 0 12px}
 .mobile-menu.open{display:block}
 .mobile-menu a{display:flex;align-items:center;min-height:52px;padding:0 24px;color:#fff;text-decoration:none;font-weight:500;border-top:1px solid rgba(255,255,255,.08)}
 .mobile-menu a:hover{color:var(--accent)}
 
 /* hero */
-.hero{position:relative;min-height:100dvh;display:flex;align-items:flex-end;background:#0e2018;overflow:hidden}
+.hero{position:relative;min-height:100dvh;display:flex;align-items:flex-end;background:#141414;overflow:hidden}
 .hero-slide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.6s ease;filter:saturate(.85) contrast(1.05)}
 .hero-slide.on{opacity:1}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,26,19,.55) 0%,rgba(10,26,19,.45) 45%,rgba(10,26,19,.78) 100%)}
@@ -97,8 +102,20 @@ section{padding:88px 0}
 /* services */
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
 .svc{background:var(--card);border-radius:var(--r);overflow:hidden;border:1px solid var(--line);transition:transform .3s,box-shadow .3s;display:flex;flex-direction:column}
-.svc:hover{transform:translateY(-6px);box-shadow:0 18px 40px -18px rgba(14,32,24,.28)}
+.svc:hover{transform:translateY(-6px);box-shadow:0 18px 40px -18px rgba(20,20,20,.28)}
 .svc img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:saturate(.85) contrast(1.05)}
+
+/* gallery: the full set of gym photos, masonry-ish so portrait and
+   panorama shots keep their own shape instead of all being cropped square */
+#gallery{background:var(--bone)}
+.gal{columns:3;column-gap:14px}
+.gal figure{margin:0 0 14px;break-inside:avoid;border-radius:var(--r);overflow:hidden;
+  border:1px solid var(--line);background:var(--card)}
+.gal img{width:100%;height:auto;display:block;filter:saturate(.9) contrast(1.03);
+  transition:transform .5s ease}
+.gal figure:hover img{transform:scale(1.04)}
+@media(max-width:900px){.gal{columns:2}}
+@media(max-width:560px){.gal{columns:1}}
 .svc-body{padding:22px 22px 26px}
 .svc-tag{display:inline-flex;align-items:center;gap:8px;font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-dark)}
 .svc-tag svg{width:15px;height:15px}
@@ -221,10 +238,11 @@ footer a:hover{color:var(--accent)}
 
 <header id="header">
   <nav class="nav" aria-label="Main">
-    <a class="logo" href="#top">Fit<b>4</b>Life NZ</a>
+    <a class="logo" href="#top" aria-label="Fit4Life NZ home"><img src="img/logo.png" alt="Fit4Life NZ" width="800" height="746"></a>
     <ul class="nav-links">
       <li><a href="#services">Training</a></li>
       <li><a href="#about">The gym</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#crew">Coaches</a></li>
       <li><a href="#reviews">Reviews</a></li>
       <li><a class="nav-call" href="tel:+6421781225">
@@ -247,9 +265,9 @@ footer a:hover{color:var(--accent)}
 <main id="top">
 
 <section class="hero" style="padding:0" aria-label="Fit4Life NZ">
-  <img class="hero-slide on" src="img/hero-1.jpg" alt="Dumbbell rack on the gym floor at a strength training gym" fetchpriority="high" width="1800" height="1200">
-  <img class="hero-slide" src="img/hero-2.jpg" alt="Lifter setting up a barbell deadlift" loading="lazy" width="1800" height="1200">
-  <img class="hero-slide" src="img/hero-3.jpg" alt="Woman pressing a barbell overhead in a squat rack" loading="lazy" width="1800" height="1200">
+  <img class="hero-slide on" src="img/gym-floor-wide.jpg" alt="The Fit4Life NZ gym floor: squat racks, benches and plate-loaded machines" fetchpriority="high" width="1800" height="1200">
+  <img class="hero-slide" src="img/outdoor-class.jpg" alt="A group class training on mats outside the gym" loading="lazy" width="1800" height="1200">
+  <img class="hero-slide" src="img/boxing-class.jpg" alt="Boxing session on the outdoor training pad" loading="lazy" width="1800" height="1200">
   <div class="hero-inner">
     <span class="hero-eyebrow">Strength gym, Mangōnui</span>
     <h1>Get strong in Doubtless Bay.</h1>
@@ -277,7 +295,7 @@ footer a:hover{color:var(--accent)}
     </div>
     <div class="svc-grid">
       <article class="svc reveal">
-        <img src="img/svc-strength.jpg" alt="Man lifting a barbell during a strength session" loading="lazy" width="1800" height="1200">
+        <img src="img/pullups.jpg" alt="Members working through hanging leg raises on the rig" loading="lazy" width="1800" height="1200">
         <div class="svc-body">
           <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5 17.5 17.5M4 10V4h6M20 14v6h-6"/></svg>Core service</span>
           <h3>Strength Training</h3>
@@ -285,7 +303,7 @@ footer a:hover{color:var(--accent)}
         </div>
       </article>
       <article class="svc reveal">
-        <img src="img/svc-group.jpg" alt="Two training partners working out together on mats" loading="lazy" width="1800" height="1200">
+        <img src="img/womens-group.jpg" alt="A training group outside the gym after a session" loading="lazy" width="1800" height="1200">
         <div class="svc-body">
           <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>Train together</span>
           <h3>Strength Groups</h3>
@@ -293,7 +311,7 @@ footer a:hover{color:var(--accent)}
         </div>
       </article>
       <article class="svc reveal">
-        <img src="img/svc-hybrid.jpg" alt="Athlete gripping a loaded barbell for a deadlift" loading="lazy" width="1800" height="1200">
+        <img src="img/outdoor-mats.jpg" alt="Mats laid out on the outdoor pad ready for a hybrid session" loading="lazy" width="1800" height="1200">
         <div class="svc-body">
           <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>Strength + engine</span>
           <h3>Hybrid Training Groups</h3>
@@ -301,7 +319,7 @@ footer a:hover{color:var(--accent)}
         </div>
       </article>
       <article class="svc reveal">
-        <img src="img/svc-pt.jpg" alt="Woman training on a lat pulldown machine" loading="lazy" width="1800" height="1200">
+        <img src="img/cable-row.jpg" alt="One-to-one coaching on the cable machine" loading="lazy" width="1800" height="1200">
         <div class="svc-body">
           <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/></svg>One on one</span>
           <h3>Personal Training</h3>
@@ -309,7 +327,7 @@ footer a:hover{color:var(--accent)}
         </div>
       </article>
       <article class="svc reveal">
-        <img src="img/svc-open.jpg" alt="Open gym floor with benches, bikes and free weights" loading="lazy" width="1800" height="1200">
+        <img src="img/gym-pano.jpg" alt="The full gym floor from end to end" loading="lazy" width="1800" height="1200">
         <div class="svc-body">
           <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18"/></svg>Your schedule</span>
           <h3>Gym Training</h3>
@@ -317,7 +335,7 @@ footer a:hover{color:var(--accent)}
         </div>
       </article>
       <article class="svc reveal">
-        <img src="img/svc-supp.jpg" alt="Scoop of protein powder" loading="lazy" width="1800" height="1200">
+        <img src="img/cable-machines.jpg" alt="Cable machines under the Fit4Life NZ wall badge" loading="lazy" width="1800" height="1200">
         <div class="svc-body">
           <span class="svc-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8M9 2v4l-4 8a5 5 0 0 0 4.5 7h5A5 5 0 0 0 19 14l-4-8V2"/></svg>Fuel</span>
           <h3>Protein &amp; Supplements</h3>
@@ -332,7 +350,7 @@ footer a:hover{color:var(--accent)}
   <div class="wrap">
     <div class="about-grid">
       <div class="about-photo reveal">
-        <img src="img/about.jpg" alt="Squat rack and dumbbells in afternoon light at the gym" loading="lazy" width="1800" height="1200">
+        <img src="img/members-group.jpg" alt="Fit4Life NZ members outside the gym entrance" loading="lazy" width="1800" height="1200">
       </div>
       <div class="about-copy reveal">
         <h2>A local gym, not a franchise</h2>
@@ -344,6 +362,28 @@ footer a:hover{color:var(--accent)}
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>All levels welcome, from first session to first competition</li>
         </ul>
       </div>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Inside the gym</h2>
+      <p>The floor, the gear and the people who train here.</p>
+    </div>
+    <div class="gal">
+      <figure class="reveal"><img src="img/gym-pano.jpg" alt="The full Fit4Life NZ gym floor from end to end" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/gym-floor-wide.jpg" alt="Squat racks, benches and plate-loaded machines on the gym floor" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/cable-machines.jpg" alt="Cable machines beneath the Fit4Life NZ wall badge" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/pullups.jpg" alt="Members working through hanging leg raises on the rig" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/cable-row.jpg" alt="One-to-one coaching on the cable machine" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/outdoor-class.jpg" alt="A group class training on mats outside the gym" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/outdoor-mats.jpg" alt="Mats laid out on the outdoor pad before a session" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/boxing-class.jpg" alt="Boxing session on the outdoor training pad" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/members-group.jpg" alt="Fit4Life NZ members outside the gym entrance" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/womens-group.jpg" alt="A training group outside the gym after a session" loading="lazy"></figure>
+      <figure class="reveal"><img src="img/gym-pano-2.jpg" alt="A second view along the full length of the gym floor" loading="lazy"></figure>
     </div>
   </div>
 </section>
